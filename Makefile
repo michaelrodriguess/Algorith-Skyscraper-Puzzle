@@ -11,7 +11,7 @@ RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -I includes/ 
 
 
-$(NAME):	$(SRCS)
+$(NAME):	$(SRCS) $(OBJS)
 		$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 all: $(NAME)
