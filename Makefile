@@ -1,11 +1,9 @@
 SRCS			= ./main.c \
 				  ./src/algorithm.c \
-				  ./src/validation.c \
-				  ./src/utils.c \
-				  ./src/ft_bzero.c \
-				  ./src/ft_calloc.c \
+				  ./src/validations.c \
+				  ./src/utils1.c \
+				  ./src/utils2.c \
 				  ./src/ft_split.c \
-				  ./src/ft_substr.c
 
 NAME			= rush-01
 

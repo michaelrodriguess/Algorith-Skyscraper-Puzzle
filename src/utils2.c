@@ -1,16 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: parnaldo <parnaldo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 16:55:07 by parnaldo          #+#    #+#             */
-/*   Updated: 2023/07/06 16:55:13 by parnaldo         ###   ########.fr       */
+/*   Created: 2023/07/06 19:51:25 by microdri          #+#    #+#             */
+/*   Updated: 2023/07/06 19:53:01 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dot.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*clean;
+	size_t			index;
+
+	clean = (unsigned char *)s;
+	index = 0;
+	while (index < n)
+	{
+		clean[index] = 0;
+		index++;
+	}
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	size_t	total_m;
+	void	*ptr;
+
+	total_m = nmemb * size;
+	ptr = malloc(total_m);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, total_m);
+	return (ptr);
+}
 
 char	*ft_substr(char const *s, unsigned int start, int len)
 {
