@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: parnaldo <parnaldo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/05 18:12:35 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/06 16:01:12 by parnaldo         ###   ########.fr       */
+/*   Created: 2023/07/06 16:04:52 by parnaldo          #+#    #+#             */
+/*   Updated: 2023/07/06 16:04:55 by parnaldo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/dot.h"
-#include <stdio.h>
+#include "dot.h"
 
-int validate_arguments(char *str)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char **nbrs;
-	int i;
+	size_t	total_m;
+	void	*ptr;
 
-	i = 0;
-	nbrs = ft_split(str, ' ');
-	while (nbrs != NULL)
-	{
-		printf("%s", nbrs[i]);
-		i++;
-	}
-	return (1);
-}
-
-int main (int argc, char **argv)
-{
-	if (argc == 2)
-	{
-		printf("%s ", argv[1]);
-	}
-	return (0);
+	total_m = nmemb * size;
+	ptr = malloc(total_m);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, total_m);
+	return (ptr);
 }

@@ -50,3 +50,14 @@ void ft_putstr_fd(char *str, int fd)
 		i++;
 	}
 }
+
+int		ft_strlen(const char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
