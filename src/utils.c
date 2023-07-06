@@ -6,13 +6,13 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:54:58 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/05 19:33:20 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:38:09 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dot.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	size_t	i;
 	size_t	signal;
@@ -37,7 +37,7 @@ int	ft_atoi(const char *str)
 	return (ret * signal);
 }
 
-void ft_putstr(char *str)
+void ft_putstr_fd(char *str, int fd)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ void ft_putstr(char *str)
 		return ;
 	while (str[i] != '\0')
 	{
-		write (1, &str[i], 1);
+		write (fd, &str[i], 1);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:12:47 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/05 18:58:14 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:37:18 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 
 int		ft_isnum(int c);
-int		ft_atoi(const char *str);
+int		ft_atoi(char *str);
 int		ft_isspace(int c);
-void	ft_putstr(char *str);
+void	ft_putstr_fd(char *str, int fd);
 
 #endif /* DOT_H */

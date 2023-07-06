@@ -8,7 +8,7 @@ NAME			= rush-01
 OBJS			= $(SRCS:.c=.o)
 CC				= cc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I includes/ 
+CFLAGS			= -Wall -Wextra -Werror -g -I includes/ 
 
 
 $(NAME):	$(SRCS) $(OBJS)

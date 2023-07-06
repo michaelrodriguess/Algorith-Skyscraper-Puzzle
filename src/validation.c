@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:21:32 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/05 18:56:50 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:44:07 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_isnum(int c)
 {
-	if (c < 48 || c > 57)
-		return (0);
-	return (1);
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }
 
 int	ft_isspace(int c)
