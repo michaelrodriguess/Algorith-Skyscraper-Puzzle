@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:51:25 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/07 16:30:52 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:43:14 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,5 @@ void mount_array(char **nbrs, int *number)
 	//	printf("number is -> %i\n", number[i]);
 		i++;
 	}
+	clear_memory(nbrs);
 }

@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:12:35 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/07 16:30:58 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:43:10 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@ int validate_arguments(char *str)
 	if (verify_only_num(nbrs) == 1)
 		count_nbrs = count_numbers(nbrs);
 	else			// limpar memoria aqui
+	{
+		clear_memory(nbrs);
 		return (0);
+	}
 	if ( count_nbrs == 16 )
 		mount_array(nbrs, number);	
 	else			// limpar memoria aqui?
+	{
+		clear_memory(nbrs);
 		ft_putstr_fd("Error: missing arguments, impossible to create the table.\n", 2);
+	}
 	return (1);
 }
 

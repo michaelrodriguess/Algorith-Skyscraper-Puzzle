@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:49:45 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/07 16:30:56 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:25:20 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+void	clear_memory(char **nbrs);
 void	ft_bzero(void *s, size_t n);
 void	ft_putstr_fd(char *str, int fd);
 void	*ft_calloc(size_t nmemb, size_t size);

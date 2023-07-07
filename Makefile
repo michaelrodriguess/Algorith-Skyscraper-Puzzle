@@ -4,6 +4,7 @@ SRCS			= ./main.c \
 				  ./src/utils1.c \
 				  ./src/utils2.c \
 				  ./src/ft_split.c \
+				  ./src/clear_memory.c 
 
 NAME			= rush-01
 
