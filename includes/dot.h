@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:49:45 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/06 19:49:54 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:30:56 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,8 @@ int		ft_isnum(int c);
 int		ft_atoi(char *str);
 int		ft_isspace(int c);
 int 	ft_strlen(const char *str);
+int		verify_only_num(char **nbrs);
+int		count_numbers(char **nbrs);
+void	mount_array(char **nbrs, int *number);
 
 #endif /* DOT_H */

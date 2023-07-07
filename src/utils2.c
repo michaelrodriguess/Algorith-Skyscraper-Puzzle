@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:51:25 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/06 19:53:01 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:30:52 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,17 @@ char	*ft_substr(char const *s, unsigned int start, int len)
 	}
 	dst[j] = '\0';
 	return (dst);
+}
+
+void mount_array(char **nbrs, int *number)
+{
+	int i;
+
+	i = 0;
+	while(nbrs[i] != NULL)
+	{
+		number[i] = ft_atoi(nbrs[i]);
+	//	printf("number is -> %i\n", number[i]);
+		i++;
+	}
 }
