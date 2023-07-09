@@ -6,7 +6,7 @@
 /*   By: parnaldo <parnaldo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:12:35 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/08 23:33:08 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/09 15:31:43 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,29 @@
 
 int main (int argc, char **argv)
 {
+	char **nbrs;
+	int matriz_checker[ROWS][COLUMNS];
+	int matriz_result[ROWS][COLUMNS];
+	int number[16];
+
+	nbrs = ft_split(argv[1], ' ');
 	if (argc == 2)
 	{
-		if (validate_arguments(argv[1]) == 0)
+		if (validate_arguments(nbrs, number) == 0)
+		{
 			ft_putstr_fd("Error: Impossible create table!\n", 2);
-//		do_algorithm();
+			return (0);
+		}
+		mount_matriz_chec(number, matriz_checker);
+		do_algo(matriz_result, matriz_checker);
+//		int i = 0;
+//		while(i <= 15)
+//		{
+//			printf("number is-> %i\n", number[i++]);
+//		}
 	}
 	else
 		ft_putstr_fd("Error: wrong paraments\n", 2);
+	clear_memory(nbrs);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:21:32 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/08 23:54:21 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/09 05:34:08 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int verify_only_num(char **nbrs)
 	}
 	return (1);
 }
+
 #include <stdio.h>
 int count_numbers(char **nbrs)
 {
@@ -61,36 +62,22 @@ int count_numbers(char **nbrs)
 		count += ft_strlen(nbrs[i]);
 		i++;
 	}
-	if (count != 16)
-		clear_memory(nbrs);
+//	if (count == 16)
 //		printf("number of how much is count_nbrs: %i\n", count);
 	return (count);
 }
 
-int validate_arguments(char *str)
+int validate_arguments(char **nbrs, int *number)
 {
-	char **nbrs;
-	int number[16];
-	int count_nbrs;
 
-	count_nbrs = 0;
-	nbrs = ft_split(str, ' ');
 	if (verify_only_num(nbrs) == 1)
-		count_nbrs = count_numbers(nbrs);
-	else
 	{
-		clear_memory(nbrs);
-		return (0);
-	}
-	if ( count_nbrs == 16 )
-	{
-		if (mount_array(nbrs, number) == 0)
+		if (count_numbers(nbrs) == 16)
 		{
-			clear_memory(nbrs);
-			return (0);
+			if (mount_array(nbrs, number) != 0)
+				return (1);
 		}
 	}
-	else
-		return (0);
-	return (1);
+	clear_memory(nbrs);
+	return (0);
 }
