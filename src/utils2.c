@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:51:25 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/07 17:43:14 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/08 22:24:39 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*ft_substr(char const *s, unsigned int start, int len)
 	return (dst);
 }
 
-void mount_array(char **nbrs, int *number)
+int mount_array(char **nbrs, int *number)
 {
 	int i;
 
@@ -75,8 +75,11 @@ void mount_array(char **nbrs, int *number)
 	while(nbrs[i] != NULL)
 	{
 		number[i] = ft_atoi(nbrs[i]);
+		if (number[i] < 1 || number[i] > 4)
+			return (0);
 	//	printf("number is -> %i\n", number[i]);
 		i++;
 	}
 	clear_memory(nbrs);
+	return (1);
 }

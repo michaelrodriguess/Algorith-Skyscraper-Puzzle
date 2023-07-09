@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:21:32 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/07 17:40:35 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/08 23:54:21 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_isspace(int c)
 	return (0);
 }
 
-// verify if have only number and count nbrs
 int verify_only_num(char **nbrs)
 {
 	int i;
@@ -40,19 +39,14 @@ int verify_only_num(char **nbrs)
 		while(nbrs[i][j] != '\0')
 		{
 			if (ft_isnum(nbrs[i][j]) == 0)
-			{
-				ft_putstr_fd("Error: can have only number on parameters\n", 2);
 				return (0);
-			}
 			j++;
 		}
-	//	ft_putstr_fd(nbrs[i], 1);
-	//	ft_putstr_fd(" ", 1);
 		i++;
 	}
 	return (1);
 }
-
+#include <stdio.h>
 int count_numbers(char **nbrs)
 {
 	int i;
@@ -67,7 +61,36 @@ int count_numbers(char **nbrs)
 		count += ft_strlen(nbrs[i]);
 		i++;
 	}
-//	printf("\nnumber of how much is count_nbrs: %i\n", count);
+	if (count != 16)
+		clear_memory(nbrs);
+//		printf("number of how much is count_nbrs: %i\n", count);
 	return (count);
 }
 
+int validate_arguments(char *str)
+{
+	char **nbrs;
+	int number[16];
+	int count_nbrs;
+
+	count_nbrs = 0;
+	nbrs = ft_split(str, ' ');
+	if (verify_only_num(nbrs) == 1)
+		count_nbrs = count_numbers(nbrs);
+	else
+	{
+		clear_memory(nbrs);
+		return (0);
+	}
+	if ( count_nbrs == 16 )
+	{
+		if (mount_array(nbrs, number) == 0)
+		{
+			clear_memory(nbrs);
+			return (0);
+		}
+	}
+	else
+		return (0);
+	return (1);
+}
