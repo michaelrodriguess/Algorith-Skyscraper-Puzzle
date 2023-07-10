@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: microdri <microdri@student.42.rj>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:21:12 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/09 15:31:42 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/10 17:09:54 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,78 @@ void mount_matriz_chec(int *array_int, int matriz_chec[ROWS][COLUMNS])
 	}
 }
 
-void do_algo(int matriz_r[ROWS][COLUMNS], int matriz_c[ROWS][COLUMNS])
-//void do_algo(int matriz_r[ROWS][COLUMNS])
+static void print_rules(int matriz_c[ROWS][COLUMNS])
 {
 	int i;
 	int j;
 
 	i = 0;
 	j = 0;
-	while(i < ROWS)
+	while (i < ROWS)
 	{
-		j = 0;
-		while(j < COLUMNS)
+		if (i == 0)
 		{
-			if (matriz_c[i][j] > 0)
-				matriz_r[i][j] = 1;
-			printf("%i ", matriz_r[i][j]);
-			j++;
+			printf("   %i %i %i %i ", matriz_c[i][j], matriz_c[i][j + 1], matriz_c[i][j + 2], matriz_c[i][j + 3]);	
+			printf("\n");
 		}
+		if (i == 2)
+		{
+			printf("  %i       %i\n  %i       %i\n  %i       %i\n  %i       %i\n", matriz_c[i][j], matriz_c[i + 1][j], matriz_c[i][j + 1], matriz_c[i + 1][j + 1],  matriz_c[i][j + 2], matriz_c[i + 1][j + 2], matriz_c[i][j + 3], matriz_c[i + 1][j + 3]);
+		}
+		if (i == 3)
+		{
+			printf("   %i %i %i %i ", matriz_c[1][j], matriz_c[1][j + 1], matriz_c[1][j + 2], matriz_c[1][j + 3]);	
+			printf("\n");
+		}
+		i++;	
+	}
+}
+
+static void brute_force(int matriz_r[ROWS][COLUMNS], int matriz_c[ROWS][COLUMNS], int i)
+{
+	int j;
+	int	k;
+
+	j = 0;
+	while(j < COLUMNS)
+	{
+		k = 0;
+		while (k < j)
+		{
+			k++;
+			if (matriz_r[i][j] == matriz_r[i][k])
+
+		}
+		if (matriz_r[i][j] == matriz_r[i][j + 1])
+			matriz_r[i][j] = 2;
+		if (matriz_c[i][j] == 4)
+			matriz_r[i][j] = 1;
+		if (matriz_c[i][j] == 2)
+			matriz_r[i][j] = 3;
+		if (matriz_c[i][j] == 3)
+			matriz_r[i][j] = 4;
+		*/
+	//	printf("%i ", matriz_r[i][j]);
+		j++;
+	}
+}
+
+void do_algo(int matriz_r[ROWS][COLUMNS], int matriz_c[ROWS][COLUMNS])
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	print_rules(matriz_c);
+	printf("\n");
+	while(i < ROWS)
+	{	
+		j = 0;
+		printf("   ");
+		brute_force(matriz_r, matriz_c, i);
 		printf("\n");
 		i++;
 	}
+	printf("\n");
 }
