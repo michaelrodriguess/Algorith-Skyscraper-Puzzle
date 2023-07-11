@@ -6,13 +6,13 @@
 /*   By: microdri <microdri@student.42.rj>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:21:12 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/11 03:59:26 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/11 07:32:30 by pbotelho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dot.h"
 
-void mount_matriz_chec(int *array_int, int matriz_chec[ROWS][COLUMNS])
+void mount_matriz_checker(int *array_int, int **matriz_checker)
 {
 	int i;
 	int j;
@@ -25,18 +25,12 @@ void mount_matriz_chec(int *array_int, int matriz_chec[ROWS][COLUMNS])
 	{
 		j = 0;
 		while(j < COLUMNS)
-		{
-			matriz_chec[i][j] = array_int[k];
-//			printf("%i ", matriz_checker[i][j]);
-			k++;
-			j++;
-		}
-//		printf("\n");
+			matriz_checker[i][j++] = array_int[k++];
 		i++;
 	}
 }
 
-static void print_rules(int matriz_c[ROWS][COLUMNS])
+static void print_rules(int **matriz_c)
 {
 	int i;
 	int j;
@@ -63,81 +57,96 @@ static void print_rules(int matriz_c[ROWS][COLUMNS])
 	}
 }
 
-int generate_combinations(int pos, int possible[24][4], int *line) 
+int generate_combinations(int temp[], int pos, int possible[24][4], int *line) 
 {
-    if (pos == 4)
-		return (1);
-	for (int i = 1; i <= 4; i++)
-	{
+    if (pos == 4) {
+        for (int i = 0; i < 4; i++) {
+            possible[*line][i] = temp[i];
+        }
+	*line += 1;
+        return (0);
+    }
+
+    for (int i = 1; i <= 4; i++) {
         int valido = 1;
-        for (int j = 0; j < pos; j++)
-		{
-            if (possible[*line][j] == i) 
-			{
+        for (int j = 0; j < pos; j++) {
+            if (temp[j] == i) {
                 valido = 0;
                 break;
             }
         }
-        if (valido) 
-		{
-            possible[*line][pos] = i;
-            *line += generate_combinations(pos + 1, possible, line);
-            possible[*line][pos] = 0;
+        if (valido) {
+            temp[pos] = i;
+            generate_combinations(temp, pos + 1, possible, line);
+            temp[pos] = 0;
         }
     }
     return (0);
 }
 
+
 void init_values(int ret[24][4])
 {
 	int	line = 0;
+	int	temp[4] = {0};
 	
-	generate_combinations(0, ret, &line);
+	generate_combinations(temp, 0, ret, &line);
 }
 
 
 
-static void brute_force(int matriz_r[ROWS][COLUMNS], int matriz_c[ROWS][COLUMNS], int i)
+static void brute_force(int **matriz_r, int **matriz_c, int	combinations[24][4], int i)
 {
 	int j;
 	int	k;
+	int	line_cmb;
 
 	j = 0;
+	line_cmb = 0;
 	(void) matriz_c;
 	(void) i;
 	while(j < COLUMNS)
 	{
 		k = 0;
-		while (k < j)
+		while (k < 4)
 		{
+			matriz_r[j][k] =  combinations[line_cmb][k];
 			k++;
-			
-			
 		}
-		printf("%i ", matriz_r[i][j]);
-	j++;
+		if (!validations_line(matriz_r[j], matriz_c[0], matriz_c[1])
+			line_cmb += 1;
+		else
+			j++;
 	}
 }
 
-void do_algo(int matriz_r[ROWS][COLUMNS], int matriz_c[ROWS][COLUMNS])
+void do_algo(int **matriz_r, int **matriz_c, int ret[24][4])
 {
-	int i;
-	int j;
-	int	ret[24][4];
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
 	print_rules(matriz_c);
-	printf("\n");
-	(void)matriz_r;
 	init_values(ret);
+	printf("\n");
 	while(i < ROWS)
 	{	
 		j = 0;
 		printf("   ");
-		brute_force(matriz_r, matriz_c, i);
+		brute_force(matriz_r, matriz_c, ret, i);
 		printf("\n");
 		i++;
 	}
 	printf("\n");
+	int	k = 0;
+	while (k < 24)
+	{
+		int	l = 0;
+		printf("   ");	
+		while (l < 4)
+			printf("%d ", ret[k][l++]);
+		printf("\n");	
+		k++;
+	}
 }
