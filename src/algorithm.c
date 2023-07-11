@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.rj>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:21:12 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/10 17:09:54 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/11 03:59:26 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,32 +63,59 @@ static void print_rules(int matriz_c[ROWS][COLUMNS])
 	}
 }
 
+int generate_combinations(int pos, int possible[24][4], int *line) 
+{
+    if (pos == 4)
+		return (1);
+	for (int i = 1; i <= 4; i++)
+	{
+        int valido = 1;
+        for (int j = 0; j < pos; j++)
+		{
+            if (possible[*line][j] == i) 
+			{
+                valido = 0;
+                break;
+            }
+        }
+        if (valido) 
+		{
+            possible[*line][pos] = i;
+            *line += generate_combinations(pos + 1, possible, line);
+            possible[*line][pos] = 0;
+        }
+    }
+    return (0);
+}
+
+void init_values(int ret[24][4])
+{
+	int	line = 0;
+	
+	generate_combinations(0, ret, &line);
+}
+
+
+
 static void brute_force(int matriz_r[ROWS][COLUMNS], int matriz_c[ROWS][COLUMNS], int i)
 {
 	int j;
 	int	k;
 
 	j = 0;
+	(void) matriz_c;
+	(void) i;
 	while(j < COLUMNS)
 	{
 		k = 0;
 		while (k < j)
 		{
 			k++;
-			if (matriz_r[i][j] == matriz_r[i][k])
-
+			
+			
 		}
-		if (matriz_r[i][j] == matriz_r[i][j + 1])
-			matriz_r[i][j] = 2;
-		if (matriz_c[i][j] == 4)
-			matriz_r[i][j] = 1;
-		if (matriz_c[i][j] == 2)
-			matriz_r[i][j] = 3;
-		if (matriz_c[i][j] == 3)
-			matriz_r[i][j] = 4;
-		*/
-	//	printf("%i ", matriz_r[i][j]);
-		j++;
+		printf("%i ", matriz_r[i][j]);
+	j++;
 	}
 }
 
@@ -96,11 +123,14 @@ void do_algo(int matriz_r[ROWS][COLUMNS], int matriz_c[ROWS][COLUMNS])
 {
 	int i;
 	int j;
+	int	ret[24][4];
 
 	i = 0;
 	j = 0;
 	print_rules(matriz_c);
 	printf("\n");
+	(void)matriz_r;
+	init_values(ret);
 	while(i < ROWS)
 	{	
 		j = 0;
