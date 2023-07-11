@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.rj>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:21:12 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/11 18:00:04 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:18:23 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ void make_line(int **mtrz_r, int **mtrz_c, int combinations[24][4])
 		if (!validations_line(mtrz_r[i], mtrz_c[2], mtrz_c[3], i))
 			line_cmb += 1;
 		else
+		{
+			line_cmb = 0;
 			i++;
+		}
 	}
 }
 
@@ -80,14 +83,17 @@ void make_col(int **mtrz_r, int **mtrz_c, int combinations[24][4])
 		if (!validations_col(mtrz_r, mtrz_c[0], mtrz_c[1], i))
 			line_cmb += 1;
 		else
+		{
+			line_cmb = 0;
 			i++;
+		}
 	}
 }
 
 void brute_force(int **mtrz_r, int **mtrz_c, int combinations[24][4])
 {
 	make_line(mtrz_r, mtrz_c, combinations);
-	make_col(mtrz_r, mtrz_c, combinations);
+	//make_col(mtrz_r, mtrz_c, combinations);
 }
 
 void do_algo(int **matriz_r, int **matriz_c, int combinations[24][4])

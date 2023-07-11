@@ -6,7 +6,7 @@
 /*   By: microdri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 17:05:06 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/11 18:00:08 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:23:23 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int validations_col(int **mtrz_r, int *vision_up, int *vision_dw, int col)
 	while (i < 4)
 	{
 		i++;
-		if (i != 4 && tmp < mtrz_r[i][col])
+		if (tmp < mtrz_r[i][col])
 		{	
 			tmp = mtrz_r[i][col];
 			size_vision_up++;
