@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.rj>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:21:12 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/11 07:32:30 by pbotelho         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:55:07 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,43 @@ static void print_rules(int **matriz_c)
 
 int generate_combinations(int temp[], int pos, int possible[24][4], int *line) 
 {
-    if (pos == 4) {
-        for (int i = 0; i < 4; i++) {
+	int i;
+	int j;
+	int valid;
+
+	j = 0;
+    if (pos == 4) 
+	{
+		i = 0;
+		while (i < 4)
+		{
             possible[*line][i] = temp[i];
+			i++;
         }
-	*line += 1;
+		*line += 1;
         return (0);
     }
-
-    for (int i = 1; i <= 4; i++) {
-        int valido = 1;
-        for (int j = 0; j < pos; j++) {
-            if (temp[j] == i) {
-                valido = 0;
+	i = 1;
+	while(i <= 4)
+	{
+		valid = 1;
+		j = 0;
+		while (j < pos)
+		{
+            if (temp[j] == i) 
+			{
+                valid = 0;
                 break;
             }
+			j++;
         }
-        if (valido) {
+        if (valid)
+		{
             temp[pos] = i;
             generate_combinations(temp, pos + 1, possible, line);
             temp[pos] = 0;
         }
+		i++;
     }
     return (0);
 }
@@ -93,7 +109,41 @@ void init_values(int ret[24][4])
 	generate_combinations(temp, 0, ret, &line);
 }
 
+int	validations_line(int *matriz_r, int	*vision_left, int *vision_rigth, int line)
+{
+	int	i;
+	int	temp;
+	int	size_vision_l;
+	int	size_vision_r;
 
+	i = 0;
+	size_vision_l = 1;
+	size_vision_r = 1;
+	temp = matriz_r[i];
+	while (i < 4)
+	{
+		i++;
+		if (temp < matriz_r[i])
+		{
+			temp = matriz_r[i];
+			size_vision_l++;
+		}
+	}
+	i--;
+	temp = matriz_r[i];
+	while (i)
+	{
+		i--;
+		if (temp < matriz_r[i])
+		{
+			temp = matriz_r[i];
+			size_vision_r++;
+		}
+	}
+	if (size_vision_l != vision_left[line] || size_vision_r != vision_rigth[line])
+		return (0);
+	return(1);
+}
 
 static void brute_force(int **matriz_r, int **matriz_c, int	combinations[24][4], int i)
 {
@@ -103,17 +153,16 @@ static void brute_force(int **matriz_r, int **matriz_c, int	combinations[24][4],
 
 	j = 0;
 	line_cmb = 0;
-	(void) matriz_c;
 	(void) i;
 	while(j < COLUMNS)
 	{
 		k = 0;
 		while (k < 4)
 		{
-			matriz_r[j][k] =  combinations[line_cmb][k];
+			matriz_r[j][k] = combinations[line_cmb][k];
 			k++;
 		}
-		if (!validations_line(matriz_r[j], matriz_c[0], matriz_c[1])
+		if (!validations_line(matriz_r[j], matriz_c[2], matriz_c[3], j))
 			line_cmb += 1;
 		else
 			j++;
@@ -130,14 +179,18 @@ void do_algo(int **matriz_r, int **matriz_c, int ret[24][4])
 	print_rules(matriz_c);
 	init_values(ret);
 	printf("\n");
-	while(i < ROWS)
-	{	
+	brute_force(matriz_r, matriz_c, ret, i);
+	printf("\n");
+	while(i < 4)
+	{
 		j = 0;
 		printf("   ");
-		brute_force(matriz_r, matriz_c, ret, i);
+		while (j < 4)
+			printf("%d ", matriz_r[i][j++]);
 		printf("\n");
 		i++;
 	}
+	printf("\n");
 	printf("\n");
 	int	k = 0;
 	while (k < 24)

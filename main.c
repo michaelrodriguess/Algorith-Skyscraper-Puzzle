@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.rj>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 14:19:42 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/11 07:32:38 by pbotelho         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:55:08 by microdri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int main (int argc, char **argv)
 	nbrs = ft_split(argv[1], ' ');
 	matriz_checker = (int **)malloc(4 * sizeof(int *));
 	matriz_result = (int **)malloc(4 * sizeof(int *));
-    	while (i < 4)
+   	while (i < 4)
 	{
-    	    matriz_checker[i] = (int *)malloc(4 * sizeof(int));
-    	    matriz_result[i] = (int *)malloc(4 * sizeof(int));
+		matriz_checker[i] = (int *)malloc(4 * sizeof(int));
+		matriz_result[i] = (int *)malloc(4 * sizeof(int));
 	    i++;
 	}
 	i = 0;
