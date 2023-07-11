@@ -1,6 +1,7 @@
 SRCS			= ./main.c \
 				  ./src/algorithm.c \
-				  ./src/validations.c \
+				  ./src/validations1.c \
+				  ./src/validations2.c \
 				  ./src/utils1.c \
 				  ./src/utils2.c \
 				  ./src/ft_split.c \
