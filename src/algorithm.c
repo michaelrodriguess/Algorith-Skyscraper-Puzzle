@@ -6,7 +6,7 @@
 /*   By: microdri <microdri@student.42.rj>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 18:21:12 by microdri          #+#    #+#             */
-/*   Updated: 2023/07/11 18:18:23 by microdri         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:45:40 by pbotelho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,19 @@ static void print_rules(int **matriz_c)
 		i++;	
 	}
 }
+
+void make_col(int **mtrz_r, int **mtrz_c, int combinations[24][4], int line_cmb);
+
 void make_line(int **mtrz_r, int **mtrz_c, int combinations[24][4])
 {
 	int i;
 	int	j;
 	int	line_cmb;
+	int	line_cmb2;
 
 	i = 0;
 	line_cmb = 0;
+	line_cmb2 = 0;
 	while(i < COLUMNS)
 	{
 		j = 0;
@@ -58,20 +63,22 @@ void make_line(int **mtrz_r, int **mtrz_c, int combinations[24][4])
 			line_cmb += 1;
 		else
 		{
+			make_col(mtrz_r, mtrz_c, combinations, line_cmb2++);
+			while (!validations_line(mtrz_r[i], mtrz_c[2], mtrz_c[3], i))
+				make_col(mtrz_r, mtrz_c, combinations, line_cmb2++);
 			line_cmb = 0;
+			line_cmb2 = 0;
 			i++;
 		}
 	}
 }
 
-void make_col(int **mtrz_r, int **mtrz_c, int combinations[24][4])
+void make_col(int **mtrz_r, int **mtrz_c, int combinations[24][4], int line_cmb)
 {
 	int i;
 	int	j;
-	int	line_cmb;
 
 	i = 0;
-	line_cmb = 0;
 	while(i < COLUMNS)
 	{
 		j = 0;
@@ -84,6 +91,7 @@ void make_col(int **mtrz_r, int **mtrz_c, int combinations[24][4])
 			line_cmb += 1;
 		else
 		{
+			return;
 			line_cmb = 0;
 			i++;
 		}
